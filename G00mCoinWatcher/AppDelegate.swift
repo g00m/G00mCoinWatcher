@@ -18,10 +18,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     var timer: Timer!
-    let coins = ["litecoin", "ripple", "bitcoin", "ethereum"]
+    let coins = ["litecoin", "ripple", "ethereum"]
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.initCoinFetching), userInfo: nil, repeats: true)
+        initCoinFetching()
     }
     
     @objc func initCoinFetching () {
@@ -29,6 +30,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func collectingCoins(index : Int) {
+        if(index == 0) {
+            statusString = ""
+        }
         fetchCoin(with: index) { (currentIndex : Int) in
             self.collectingCoins(index: currentIndex+1)
         }
