@@ -1,0 +1,6 @@
+framework module Pods_G00mCoinWatcher {
+  umbrella header "Pods-G00mCoinWatcher-umbrella.h"
+
+  export *
+  module * { export * }
+}
